@@ -1,0 +1,56 @@
+{
+  "private": true,
+  "name": "build-static-page",
+  "version": "0.0.1-alpha.10",
+  "description": "A tool to build static page.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "build-static-page": "dist/bin/command.js"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "lint": "eslint lib",
+    "compile": "tsc",
+    "prepublishOnly": "npm run clean && npm run lint && npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/john-yuan/build-static-page.git"
+  },
+  "keywords": [
+    "build",
+    "static"
+  ],
+  "author": "John Yuan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/john-yuan/build-static-page/issues"
+  },
+  "homepage": "https://github.com/john-yuan/build-static-page#readme",
+  "dependencies": {
+    "autoprefixer": "^9.8.6",
+    "clean-css": "^4.2.3",
+    "colors": "^1.4.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "filesize": "^6.1.0",
+    "fs-extra": "^9.0.1",
+    "js-beautify": "^1.13.0",
+    "jsdom": "^16.4.0",
+    "less": "^3.12.2",
+    "lodash": "^4.17.20",
+    "postcss": "^7.0.32",
+    "uglify-js": "^3.10.3",
+    "yargs": "^15.4.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.8.1",
+    "typescript": "^4.0.2"
+  }
+}
