@@ -12,10 +12,10 @@
     "build-static-page": "dist/bin/command.js"
   },
   "scripts": {
-    "clean": "rm -rf dist",
     "lint": "eslint lib",
-    "compile": "tsc",
-    "prepublishOnly": "npm run clean && npm run lint && npm run compile"
+    "preCompile": "node scripts/pre-compile.js",
+    "compile": "npm run preCompile && tsc",
+    "prepublishOnly": "npm run lint && npm run compile"
   },
   "repository": {
     "type": "git",
