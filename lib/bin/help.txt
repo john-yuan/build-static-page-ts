@@ -1,0 +1,21 @@
+usage:
+  build-static-page [options]
+
+example:
+  build-static-page --init
+  build-static-page --serve
+  build-static-page --build
+
+options:
+  --init        Initialize project in current directory
+  --build       Build project
+  --serve       Start development server
+  --config      Path to config [./build.static.config.js]
+  --mode        Set mode
+  --host        Set development server host [0.0.0.0]
+  --port        Set development server port [8080]
+  --log-level   Set log level (log, info, warning, error) [log]
+  --quiet       Disable all logs
+  --no-colors   No colors for logs
+  --version     Print current version
+  --help        Print this help message
