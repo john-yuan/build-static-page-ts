@@ -46,8 +46,9 @@ export default function (root: string, context: BuildStaticPageContext) {
             res.send(html);
           }).catch((err) => {
             res.statusCode = 500;
+            res.statusMessage = 'ERR_RENDER_HTML';
             res.setHeader('Content-Type', 'text/plain; charset=UTF-8');
-            res.send(err.toString());
+            res.send(toString(err));
           });
       } else {
         res.statusCode = 404;

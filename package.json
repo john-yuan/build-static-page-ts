@@ -48,9 +48,11 @@
     "yargs": "^15.4.1"
   },
   "devDependencies": {
+    "@types/autoprefixer": "^9.7.2",
     "@types/ejs": "^3.0.4",
     "@types/express": "^4.17.8",
     "@types/fs-extra": "^9.0.1",
+    "@types/less": "^3.0.1",
     "@types/lodash": "^4.14.161",
     "@types/yargs": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^4.1.0",

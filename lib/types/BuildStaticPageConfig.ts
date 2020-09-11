@@ -1,4 +1,5 @@
-import { Data } from 'ejs';
+import ejs from 'ejs';
+import autoprefixer from 'autoprefixer';
 
 export default interface BuildStaticPageConfig {
   settings: {
@@ -10,7 +11,8 @@ export default interface BuildStaticPageConfig {
     quiet: boolean;
     noColors: boolean;
   };
-  templateGlobals: Data;
+  templateGlobals: ejs.Data;
+  autoprefixerOptions: autoprefixer.Options;
   scan: {
     index: string[];
     htmlRegexp: RegExp;
