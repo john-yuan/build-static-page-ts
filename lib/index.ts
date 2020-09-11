@@ -1,15 +1,23 @@
 import fse from 'fs-extra';
 import path from 'path';
 import BuildStaticPageOptions from './types/BuildStaticPageOptions';
-import Logger from './shared/logger';
 import BuildStaticPageResult from './types/BuildStaticPageResult';
+import getContext from './shared/getContext';
 
-export default function(options: BuildStaticPageOptions) {
+export default function (options: BuildStaticPageOptions) {
   return new Promise<BuildStaticPageResult>((resolve) => {
-    const { quiet, logLevel, noColors } = options;
-    const logger = new Logger({ quiet, logLevel, noColors });
+    const context = getContext(options);
+    const { logger } = context;
 
-    if (options.version) {
+    if (options.init) {
+      // TODO
+    } else if (options.build) {
+      // TODO
+    } else if (options.preview) {
+      // TODO
+    } else if (options.serve) {
+      // TODO
+    } else if (options.version) {
       const packagePath = path.resolve(__dirname, '../package.json');
       const packageJSON = JSON.parse(fse.readFileSync(packagePath).toString());
       const version = packageJSON.version as string;

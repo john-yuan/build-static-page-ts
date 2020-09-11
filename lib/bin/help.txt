@@ -9,8 +9,9 @@ example:
 options:
   --init        Initialize project in current directory
   --build       Build project
+  --preview     Build project and serve the build result
   --serve       Start development server
-  --config      Path to config [./build.static.config.js]
+  --config      Path to config [./build.static.page.config.js]
   --mode        Set mode
   --host        Set development server host [0.0.0.0]
   --port        Set development server port [8080]

@@ -15,8 +15,7 @@
     "lint": "eslint lib",
     "preCompile": "node scripts/pre-compile.js",
     "compile": "npm run preCompile && tsc",
-    "prepublishOnly": "npm run lint && npm run compile",
-    "command": "npm run lint && npm run compile && node dist/bin/command.js"
+    "prepublishOnly": "npm run lint && npm run compile"
   },
   "repository": {
     "type": "git",

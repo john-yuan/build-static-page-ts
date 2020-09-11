@@ -8,6 +8,7 @@ const { argv } = yargs.help(false);
 const options = pick([
   'init',
   'build',
+  'preview',
   'serve',
   'config',
   'mode',
@@ -26,4 +27,7 @@ if (argv['no-colors']) {
   options.noColors = argv['no-colors'];
 }
 
-buildStaticPage(options as BuildStaticPageOptions);
+buildStaticPage(options as BuildStaticPageOptions).catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

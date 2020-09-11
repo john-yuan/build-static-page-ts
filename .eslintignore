@@ -1,2 +1,5 @@
 dist
 scripts
+example
+lib/initializer/www
+lib/initializer/default.config.js

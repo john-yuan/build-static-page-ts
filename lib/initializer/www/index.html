@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build static page</title>
+  <link rel="stylesheet" href="./static/styles/index.less">
+  <!--
+    Your can also set the output filename for as bellow:
+    <link @output="[name].[hash].css" rel="stylesheet" href="./static/styles/index.less">
+  -->
+  <%- include('fragments/mode.fragment.html') -%>
+</head>
+<body>
+  <!--
+    You can combine several scripts files into one single bundle like below:
+    <script @bundle="./path/to/bundle/lib.[hash].js" src="./path/to/jquery.js"></script>
+    <script @bundle="./path/to/bundle/lib.[hash].js" src="./path/to/cookies.js"></script>
+  -->
+  <script src="./static/scripts/index.js"></script>
+</body>
+</html>
