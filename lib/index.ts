@@ -4,6 +4,7 @@ import BuildStaticPageOptions from './types/BuildStaticPageOptions';
 import BuildStaticPageResult from './types/BuildStaticPageResult';
 import getContext from './shared/getContext';
 import initProject from './initProject';
+import serveStatic from './serveStatic';
 
 export default function (options: BuildStaticPageOptions) {
   return new Promise<BuildStaticPageResult>((resolve, reject) => {
@@ -11,13 +12,13 @@ export default function (options: BuildStaticPageOptions) {
     const { logger } = context;
 
     if (options.init) {
-      return initProject(context).then(resolve).catch(reject);
+      initProject(context).then(resolve).catch(reject);
     } else if (options.build) {
       // TODO
     } else if (options.preview) {
       // TODO
     } else if (options.serve) {
-      // TODO
+      serveStatic(context);
     } else if (options.version) {
       const packagePath = path.resolve(__dirname, '../package.json');
       const packageJSON = JSON.parse(fse.readFileSync(packagePath).toString());
