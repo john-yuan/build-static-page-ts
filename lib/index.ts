@@ -3,14 +3,15 @@ import path from 'path';
 import BuildStaticPageOptions from './types/BuildStaticPageOptions';
 import BuildStaticPageResult from './types/BuildStaticPageResult';
 import getContext from './shared/getContext';
+import initProject from './initProject';
 
 export default function (options: BuildStaticPageOptions) {
-  return new Promise<BuildStaticPageResult>((resolve) => {
+  return new Promise<BuildStaticPageResult>((resolve, reject) => {
     const context = getContext(options);
     const { logger } = context;
 
     if (options.init) {
-      // TODO
+      return initProject(context).then(resolve).catch(reject);
     } else if (options.build) {
       // TODO
     } else if (options.preview) {
