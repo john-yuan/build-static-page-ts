@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index of <%= requestPath %></title>
+  <style>
+    h1 {
+      font-size: 24px;
+    }
+
+    .entries {
+      font-size: 14px;
+      font-family: Consolas, monospace;
+      overflow: hidden;
+    }
+
+    .entries ul,
+    .entries li {
+      margin: 0;
+      padding: 0;
+      display: block;
+      list-style: none;
+    }
+
+    .entries li {
+      padding: 1em;
+      line-height: 150%;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .url-other {
+      color: chocolate;
+    }
+
+    .url-error {
+      color: red;
+    }
+
+    @media (min-width: 768px) {
+      .entries li {
+        padding: 0.5em 0;
+        display: flex;
+      }
+
+      .url {
+        flex-grow: 1;
+      }
+
+      .size {
+        padding: 0 1em;
+      }
+
+      .size,
+      .mtime {
+        flex-shrink: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Index of <%= requestPath %></h1>
+  <div class="entries">
+    <ul>
+      <% entries.forEach((entry) => { -%>
+        <li class="entry entry-<%= entry.type %>">
+          <div class="url url-<%= entry.type %>">
+            <% if (entry.type === 'dir' || entry.type === 'file') { %>
+              <a href="<%= entry.url %>" title="<%= entry.name %>">
+                <%= entry.name %>
+              </a>
+            <% } else { %>
+              <%= entry.name %>
+            <% } %>
+          </div>
+          <div class="size">
+            <span><%= entry.size %></span>
+          </div>
+          <div class="mtime">
+            <span><%= entry.mtime %></span>
+          </div>
+        </li>
+      <% }) -%>
+    </ul>
+  </div>
+</body>
+</html>

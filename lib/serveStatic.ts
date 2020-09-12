@@ -22,7 +22,7 @@ export default function (context: BuildStaticPageContext) {
       app.use(lessMiddleware(root, context));
     }
 
-    app.use(indexMiddleware(root, context));
+    app.use(indexMiddleware(root));
     app.use(express.static(root));
 
     const tryStartServer = (port: number) => {
@@ -46,6 +46,14 @@ export default function (context: BuildStaticPageContext) {
         message.push(yellow('Hit Ctrl-C to stop the server'));
 
         logger.log(message.join('\n'));
+
+        resolve({
+          mode,
+          root,
+          port,
+          host: addresses,
+          logs: logger.getLogs(),
+        });
       }).once('error', (err: { errno: string }) => {
         if (err.errno === 'EADDRINUSE') {
           tryStartServer(port + 1);

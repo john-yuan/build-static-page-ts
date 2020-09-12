@@ -23,6 +23,8 @@ export default function (options: BuildStaticPageOptions) {
   }
 
   const configDir = path.dirname(configPath);
+
+  /* eslint @typescript-eslint/no-var-requires: "off" */
   const configFn = require(configPath);
 
   if (typeof configFn !== 'function') {
