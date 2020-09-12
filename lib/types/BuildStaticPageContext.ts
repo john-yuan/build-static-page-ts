@@ -7,6 +7,8 @@ export default interface BuildStaticPageContext {
   options: BuildStaticPageOptions
   config: BuildStaticPageConfig;
   logger: Logger;
-  configPath: string;
+  userConfigPath: string;
   userConfigExists: boolean;
+  defaultConfigPath: string;
+  workingConfigPath: string;
 }

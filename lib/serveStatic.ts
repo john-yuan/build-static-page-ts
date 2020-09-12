@@ -43,7 +43,7 @@ export default function (context: BuildStaticPageContext) {
         message.push(cyan('  ' + mode));
         message.push(green('Available on:'));
         addresses.forEach((host) => message.push(cyan(`  http://${host}:${port}`)));
-        message.push(yellow('Hit Ctrl-C to stop the server'));
+        message.push(yellow('\nHit Ctrl-C to stop the server'));
 
         logger.log(message.join('\n'));
 

@@ -6,13 +6,21 @@ import relativePath from './shared/relativePath';
 
 export default function (context: BuildStaticPageContext) {
   return new Promise<BuildStaticPageResult>((resolve) => {
-    const { logger, configPath, userConfigExists, config } = context;
+    const {
+      logger,
+      userConfigPath,
+      userConfigExists,
+      defaultConfigPath,
+      config,
+    } = context;
+
     const { src } = config.settings;
 
     if (userConfigExists) {
-      logger.info(`config exists (${relativePath(configPath)})`);
+      logger.info(`config exists (${relativePath(userConfigPath)})`);
     } else {
-      logger.info(`config created (${relativePath(configPath)})`);
+      fse.copySync(defaultConfigPath, userConfigPath);
+      logger.info(`config created (${relativePath(userConfigPath)})`);
     }
 
     if (fse.pathExistsSync(src)) {
@@ -27,7 +35,7 @@ export default function (context: BuildStaticPageContext) {
 
     resolve({
       logs: logger.getLogs(),
-      configPath,
+      configPath: userConfigPath,
     });
   });
 }

@@ -1,5 +1,4 @@
 import path from 'path';
-import fse from 'fs-extra';
 import toString from 'lodash/fp/toString';
 import Logger from './logger';
 import fileExists from './fileExists';
@@ -8,24 +7,23 @@ import BuildStaticPageOptions from '../types/BuildStaticPageOptions';
 import BuildStaticPageContext from '../types/BuildStaticPageContext';
 
 export default function (options: BuildStaticPageOptions) {
-  const configPath = path.resolve(options.config || 'build.static.page.config.js');
-  const defaultConfigPath = path.resolve(__dirname, '../initializer/default.config.js');
-  const userConfigExists = fileExists(configPath);
+  const configArg = toString(options.config);
+  const userConfig = configArg || 'build.static.page.config.js';
+  const userConfigPath = path.resolve(userConfig);
+  const userConfigDir = path.dirname(userConfigPath);
+  const userConfigExists = fileExists(userConfigPath);
+  const defaultConfigName = '../initializer/default.config.js';
+  const defaultConfigPath = path.resolve(__dirname, defaultConfigName);
+  const workingConfigPath = userConfigExists
+    ? userConfigPath
+    : defaultConfigPath;
 
-  if (!userConfigExists) {
-    if (options.init) {
-      fse.outputFileSync(configPath, fse.readFileSync(defaultConfigPath));
-    } else {
-      throw new Error('config does not exists, '
-        + 'please use `--init` to create one.\n\n'
-        + `config path: ${configPath}`);
-    }
+  if (configArg && !userConfigExists) {
+    throw new Error(`config not found ${userConfigPath}`);
   }
 
-  const configDir = path.dirname(configPath);
-
   /* eslint @typescript-eslint/no-var-requires: "off" */
-  const configFn = require(configPath);
+  const configFn = require(workingConfigPath);
 
   if (typeof configFn !== 'function') {
     throw new TypeError('config is not a function');
@@ -54,18 +52,20 @@ export default function (options: BuildStaticPageOptions) {
     }
   }
 
-  settings.src = path.resolve(configDir, settings.src || 'www');
-  settings.dist = path.resolve(configDir, settings.dist || 'dist');
+  settings.src = path.resolve(userConfigDir, settings.src || 'www');
+  settings.dist = path.resolve(userConfigDir, settings.dist || 'dist');
 
   const { logLevel, quiet, noColors } = settings;
   const logger = new Logger({ logLevel, quiet, noColors });
   const context: BuildStaticPageContext = {
     mode,
-    options,
-    config,
     logger,
-    configPath,
+    config,
+    options,
+    userConfigPath,
     userConfigExists,
+    defaultConfigPath,
+    workingConfigPath,
   };
 
   return context;
