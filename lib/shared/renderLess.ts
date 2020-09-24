@@ -3,7 +3,7 @@ import fse from 'fs-extra';
 import autoprefixer, { Options } from 'autoprefixer';
 import postcss from 'postcss';
 
-export default function (filepath: string, autoprefixerOptions: Options) {
+export default function (filepath: string, autoprefixerOptions?: Options) {
   return less.render(fse.readFileSync(filepath).toString(), {
     filename: filepath
   }).then(({ css }) => {

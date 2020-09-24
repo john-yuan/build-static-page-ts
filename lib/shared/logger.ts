@@ -42,7 +42,7 @@ class Logger {
 
       if (type === 'info' && level <= 2) {
         const msg = `[INFO] ${message}`;
-        console.info(noColors ? msg : colors.cyan(msg));
+        console.info(noColors ? msg : colors.green(msg));
       }
 
       if (type === 'warning' && level <= 3) {

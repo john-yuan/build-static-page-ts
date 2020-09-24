@@ -33,6 +33,7 @@
   "homepage": "https://github.com/john-yuan/build-static-page#readme",
   "dependencies": {
     "autoprefixer": "^9.8.6",
+    "cheerio": "^1.0.0-rc.3",
     "clean-css": "^4.2.3",
     "colors": "^1.4.0",
     "ejs": "^3.1.5",
@@ -40,7 +41,6 @@
     "filesize": "^6.1.0",
     "fs-extra": "^9.0.1",
     "js-beautify": "^1.13.0",
-    "jsdom": "^16.4.0",
     "less": "^3.12.2",
     "lodash": "^4.17.20",
     "postcss": "^7.0.32",
@@ -49,9 +49,12 @@
   },
   "devDependencies": {
     "@types/autoprefixer": "^9.7.2",
+    "@types/cheerio": "0.22.21",
+    "@types/clean-css": "^4.2.2",
     "@types/ejs": "^3.0.4",
     "@types/express": "^4.17.8",
     "@types/fs-extra": "^9.0.1",
+    "@types/js-beautify": "^1.11.0",
     "@types/less": "^3.0.1",
     "@types/lodash": "^4.14.161",
     "@types/yargs": "^15.0.5",

@@ -6,6 +6,8 @@ export default interface BuildStaticPageResult {
   // --build
   // --preview
   mode?: string;
+  // --build
+  dist?: string;
   // --init
   configPath?: string;
   // --serve

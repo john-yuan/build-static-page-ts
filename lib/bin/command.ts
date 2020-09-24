@@ -27,7 +27,10 @@ if (argv['no-colors']) {
   options.noColors = argv['no-colors'];
 }
 
-buildStaticPage(options as BuildStaticPageOptions).catch((err) => {
+buildStaticPage(options as BuildStaticPageOptions).then(() => {
+  console.log('finished');
+}).catch((err) => {
+  console.log('exiting');
   console.error(err);
   process.exit(1);
 });

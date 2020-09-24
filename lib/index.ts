@@ -6,6 +6,7 @@ import BuildStaticPageResult from './types/BuildStaticPageResult';
 import getContext from './shared/getContext';
 import initProject from './initProject';
 import serveStatic from './serveStatic';
+import buildStatic from './buildStatic';
 
 export default function (options: BuildStaticPageOptions) {
   return new Promise<BuildStaticPageResult>((resolve, reject) => {
@@ -25,7 +26,7 @@ export default function (options: BuildStaticPageOptions) {
     if (options.init) {
       initProject(context).then(resolve).catch(reject);
     } else if (options.build) {
-      // TODO
+      buildStatic(context).then(tip).then(resolve).catch(reject);
     } else if (options.preview) {
       // TODO
     } else if (options.serve) {
